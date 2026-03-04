@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { StyleSheet, Text, View } from 'react-native';
 
 import { AuthStackParamList } from '../../../navigation/types';
+import { AppleIcon, GoogleIcon } from '../../../shared/components/AppIcons';
 import { ClaimyLogoMark } from '../../../shared/components/ClaimyLogoMark';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
@@ -34,7 +35,7 @@ export function WelcomeScreen({ navigation }: Props) {
           <View style={styles.actions}>
             <SocialButton
               tone="light"
-              iconText="@"
+              icon={<AppleIcon size={16} color="#131313" />}
               label="Continue with Email"
               onPress={() => navigation.navigate('SignUp')}
             />
@@ -42,7 +43,7 @@ export function WelcomeScreen({ navigation }: Props) {
               <View style={styles.half}>
                 <SocialButton
                   tone="dark"
-                  iconText="A"
+                  icon={<AppleIcon size={16} color="#FFFFFF" />}
                   label="Use Apple"
                   onPress={signIn}
                 />
@@ -50,7 +51,7 @@ export function WelcomeScreen({ navigation }: Props) {
               <View style={styles.half}>
                 <SocialButton
                   tone="dark"
-                  iconText="G"
+                  icon={<GoogleIcon size={16} />}
                   label="Use Google"
                   onPress={signIn}
                 />

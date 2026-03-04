@@ -1,7 +1,16 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ClaimStackParamList } from '../../../navigation/types';
+import {
+  ForwardIcon,
+  StatusChatPurpleIcon,
+  StatusDaisyIcon,
+  StatusDiamondCyanIcon,
+  StatusDiamondGoldIcon,
+  StatusHeartIcon,
+} from '../../../shared/components/AppIcons';
 import { GlassCard } from '../../../shared/components/GlassCard';
 import { IconCircleButton } from '../../../shared/components/IconCircleButton';
 import { Screen } from '../../../shared/components/Screen';
@@ -15,16 +24,46 @@ type StatusOption = {
   key: string;
   title: string;
   subtitle: string;
-  icon: string;
+  icon: ReactNode;
   color: string;
 };
 
 const options: StatusOption[] = [
-  { key: 'talking', title: 'Talking Stage', subtitle: 'Getting to know each other', icon: '◌', color: '#B15CFF' },
-  { key: 'dating', title: 'Dating', subtitle: 'Seeing where it goes', icon: '✿', color: '#FF2FB3' },
-  { key: 'relationship', title: 'In a Relationship', subtitle: 'Getting to know each other', icon: '♥', color: '#FF3B5C' },
-  { key: 'engaged', title: 'Engaged', subtitle: 'Put a ring on it', icon: '♦', color: '#00D6FF' },
-  { key: 'married', title: 'Married', subtitle: 'Happily ever after', icon: '♦', color: '#FFB020' },
+  {
+    key: 'talking',
+    title: 'Talking Stage',
+    subtitle: 'Getting to know each other',
+    icon: <StatusChatPurpleIcon size={20} color="#B15CFF" />,
+    color: '#4A4A4A',
+  },
+  {
+    key: 'dating',
+    title: 'Dating',
+    subtitle: 'Seeing where it goes',
+    icon: <StatusDaisyIcon size={20} color="#FF2FB3" />,
+    color: '#4A4A4A',
+  },
+  {
+    key: 'relationship',
+    title: 'In a Relationship',
+    subtitle: 'Getting to know each other',
+    icon: <StatusHeartIcon size={20} color="#FF3B5C" />,
+    color: '#4A4A4A',
+  },
+  {
+    key: 'engaged',
+    title: 'Engaged',
+    subtitle: 'Put a ring on it',
+    icon: <StatusDiamondCyanIcon size={20} color="#00D6FF" />,
+    color: '#4A4A4A',
+  },
+  {
+    key: 'married',
+    title: 'Married',
+    subtitle: 'Happily ever after',
+    icon: <StatusDiamondGoldIcon size={20} color="#FFB020" />,
+    color: '#4A4A4A',
+  },
 ];
 
 export function StatusScreen({ navigation }: Props) {
@@ -53,13 +92,13 @@ export function StatusScreen({ navigation }: Props) {
               <GlassCard style={styles.rowCard}>
                 <View style={styles.row}>
                   <View style={[styles.rowIcon, { borderColor: option.color }]}>
-                    <Text style={[styles.rowIconText, { color: option.color }]}>{option.icon}</Text>
+                    {option.icon}
                   </View>
                   <View style={styles.rowText}>
                     <Text style={styles.rowTitle}>{option.title}</Text>
                     <Text style={styles.rowSubtitle}>{option.subtitle}</Text>
                   </View>
-                  <Text style={styles.chev}>{'>'}</Text>
+                  <ForwardIcon size={14} color="rgba(255,255,255,0.42)" />
                 </View>
               </GlassCard>
             </Pressable>
@@ -110,13 +149,10 @@ const styles = StyleSheet.create({
     width: 34,
     height: 34,
     borderRadius: 17,
-    borderWidth: 2,
+    borderWidth: 1,
+    backgroundColor: '#1D1D22',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  rowIconText: {
-    fontSize: 12,
-    fontWeight: '900',
   },
   rowText: {
     flex: 1,
@@ -130,10 +166,5 @@ const styles = StyleSheet.create({
   rowSubtitle: {
     color: 'rgba(255,255,255,0.45)',
     fontSize: 12,
-  },
-  chev: {
-    color: 'rgba(255,255,255,0.4)',
-    fontSize: 16,
-    fontWeight: '900',
   },
 });

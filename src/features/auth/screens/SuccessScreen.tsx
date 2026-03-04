@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { AuthStackParamList } from '../../../navigation/types';
 import { AppButton } from '../../../shared/components/AppButton';
+import { CheckSuccessIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -18,9 +19,9 @@ export function SuccessScreen({ navigation }: Props) {
       <View style={styles.root}>
         <View style={styles.center}>
           <View style={styles.checkOuter}>
-            <Text style={styles.check}>OK</Text>
+            <CheckSuccessIcon width={50} height={36} color="#22C55E" />
           </View>
-          <Text style={styles.title}>Welcome!</Text>
+          <Text style={styles.title}>You're all set</Text>
           <Text style={styles.copy}>
             Claim your person in an exclusive space for one-on-one connections. Your account has been created. Start exploring.
           </Text>
@@ -54,21 +55,11 @@ const styles = StyleSheet.create({
     gap: spacing.md,
   },
   checkOuter: {
-    width: 94,
-    height: 94,
-    borderRadius: 47,
-    backgroundColor: 'rgba(52, 199, 89, 0.18)',
-    borderWidth: 1,
-    borderColor: 'rgba(52, 199, 89, 0.35)',
+    width: 56,
+    height: 40,
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: spacing.md,
-  },
-  check: {
-    color: '#34C759',
-    fontSize: 22,
-    fontWeight: '900',
-    letterSpacing: 1,
+    marginBottom: spacing.sm,
   },
   title: {
     color: colors.white,

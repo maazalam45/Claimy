@@ -1,6 +1,7 @@
 import { PropsWithChildren } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { BackIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -23,7 +24,7 @@ export function ProfileSetupLayout({ title, subtitle, onBack, children }: Profil
             style={styles.back}
             hitSlop={10}
           >
-            <Text style={styles.backText}>{'<'}</Text>
+            <BackIcon size={18} color="rgba(255,255,255,0.85)" />
           </Pressable>
         ) : null}
 
@@ -52,11 +53,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
-  },
-  backText: {
-    color: 'rgba(255,255,255,0.85)',
-    fontSize: 16,
-    fontWeight: '800',
   },
   title: {
     color: colors.white,

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { AuthStackParamList } from '../../../navigation/types';
 import { AppButton } from '../../../shared/components/AppButton';
+import { SignInFailedIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -15,7 +16,7 @@ export function FallbackSignInFailedScreen({ navigation }: Props) {
       <View style={styles.root}>
         <View style={styles.center}>
           <View style={styles.iconOuter}>
-            <Text style={styles.iconGlyph}>⊘</Text>
+            <SignInFailedIcon size={44} color="#FF5A5F" />
           </View>
           <Text style={styles.title}>Failed to Sign In</Text>
           <Text style={styles.copy}>
@@ -57,11 +58,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
-  },
-  iconGlyph: {
-    color: '#FF5A5F',
-    fontSize: 34,
-    fontWeight: '900',
   },
   title: {
     color: colors.white,

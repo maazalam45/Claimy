@@ -18,7 +18,7 @@ export const onboardingSlides: OnboardingSlideCopy[] = [
     key: 'step-2',
     title: 'Private World for Two',
     description:
-      'A sanctuary just for both of you to grow. No distractions, just tools to build a lasting legacy together.',
+      'A sanctuary just for both of you to grow. No distractions, just tools to build a lasting legacy together. Claim your special someone to unlock the full 1:1 Claimy experience.',
     icon: 'shield',
   },
   {

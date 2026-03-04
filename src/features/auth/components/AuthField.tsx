@@ -1,6 +1,7 @@
 import { useMemo, useState } from 'react';
 import { Pressable, StyleSheet, Text, TextInput, View } from 'react-native';
 
+import { EyeIcon } from '../../../shared/components/AppIcons';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
 
@@ -59,7 +60,7 @@ export function AuthField({
             hitSlop={10}
             style={styles.toggle}
           >
-            <Text style={styles.toggleText}>{computedSecure ? 'Show' : 'Hide'}</Text>
+            <EyeIcon size={16} color={computedSecure ? 'rgba(255,255,255,0.75)' : '#FFFFFF'} />
           </Pressable>
         ) : null}
       </View>
@@ -96,11 +97,6 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  toggleText: {
-    color: 'rgba(255,255,255,0.55)',
-    fontSize: 12,
-    fontWeight: '700',
   },
   underline: {
     height: 1,

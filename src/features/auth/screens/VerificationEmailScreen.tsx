@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { AuthStackParamList } from '../../../navigation/types';
 import { AppButton } from '../../../shared/components/AppButton';
+import { MailVerificationIcon } from '../../../shared/components/AppIcons';
 import { IconCircleButton } from '../../../shared/components/IconCircleButton';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
@@ -22,7 +23,7 @@ export function VerificationEmailScreen({ navigation, route }: Props) {
 
         <View style={styles.center}>
           <View style={styles.mailOuter}>
-            <Text style={styles.mailGlyph}>✉</Text>
+            <MailVerificationIcon size={40} color="#22C55E" />
           </View>
           <Text style={styles.title}>Email Sent!</Text>
           <Text style={styles.copy}>Your verification email has been sent to:</Text>
@@ -70,11 +71,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
-  },
-  mailGlyph: {
-    color: '#22C55E',
-    fontSize: 36,
-    fontWeight: '900',
   },
   title: {
     color: colors.white,

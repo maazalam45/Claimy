@@ -11,6 +11,7 @@ import {
 } from 'react-native';
 
 import { AppButton } from '../../../shared/components/AppButton';
+import { ForwardIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -123,7 +124,8 @@ export function OnboardingScreen() {
           />
           <View style={styles.buttonWrap}>
             <AppButton
-              label={isLast ? 'Get Started  >' : 'Next  >'}
+              label={isLast ? 'Get Started' : 'Next'}
+              rightIcon={<ForwardIcon />}
               onPress={isLast ? completeOnboarding : goNext}
               fullWidth
               variant="light"
