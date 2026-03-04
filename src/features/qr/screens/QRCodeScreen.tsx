@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ShareStackParamList } from '../../../navigation/types';
+import { BackIcon, QrScanIcon, RefreshIcon } from '../../../shared/components/AppIcons';
 import { GlassCard } from '../../../shared/components/GlassCard';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
@@ -18,14 +19,14 @@ export function QRCodeScreen({ navigation }: Props) {
       <View style={styles.root}>
         <View style={styles.header}>
           <Pressable onPress={() => navigation.goBack()} style={styles.circleBtn}>
-            <Text style={styles.circleText}>{'<'}</Text>
+            <BackIcon size={18} color={colors.white} />
           </Pressable>
           <View style={styles.headerCenter}>
             <Text style={styles.title}>Talking Stage</Text>
             <Text style={styles.sub}>• SECURE LINK ACTIVE</Text>
           </View>
           <Pressable style={styles.circleBtn}>
-            <Text style={styles.circleText}>↻</Text>
+            <RefreshIcon size={18} color="#A3A1A5" />
           </Pressable>
         </View>
 
@@ -40,7 +41,10 @@ export function QRCodeScreen({ navigation }: Props) {
           </View>
         </GlassCard>
 
-        <View style={styles.required}><Text style={styles.requiredText}>ACTION REQUIRED</Text></View>
+        <View style={styles.required}>
+          <QrScanIcon size={12} color="#A3A1A5" />
+          <Text style={styles.requiredText}>ACTION REQUIRED</Text>
+        </View>
         <Text style={styles.scan}>Scan to confirm</Text>
         <Text style={styles.claim}>Talking Stage claim</Text>
 
@@ -59,7 +63,6 @@ const styles = StyleSheet.create({
   root: { flex: 1, paddingHorizontal: spacing.lg, paddingTop: spacing.lg },
   header: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   circleBtn: { width: 40, height: 40, borderRadius: 20, backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)', alignItems: 'center', justifyContent: 'center' },
-  circleText: { color: colors.white, fontSize: 18, fontWeight: '700' },
   headerCenter: { alignItems: 'center' },
   title: { color: colors.white, fontSize: 34 / 2, fontWeight: '900' },
   sub: { marginTop: 2, color: 'rgba(190,166,255,0.82)', fontSize: 10, fontWeight: '700', letterSpacing: 1 },
@@ -69,7 +72,19 @@ const styles = StyleSheet.create({
   cell: { width: 20.9, height: 20.9, backgroundColor: '#FFFFFF' },
   cellOn: { backgroundColor: '#B26DFF' },
   centerDot: { position: 'absolute', width: 34, height: 34, borderRadius: 17, backgroundColor: 'rgba(255,255,255,0.9)', borderWidth: 1, borderColor: 'rgba(178,109,255,0.4)' },
-  required: { marginTop: spacing.lg, alignSelf: 'center', borderRadius: 12, paddingHorizontal: 12, paddingVertical: 5, backgroundColor: 'rgba(255,255,255,0.06)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.08)' },
+  required: {
+    marginTop: spacing.lg,
+    alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
+    borderRadius: 12,
+    paddingHorizontal: 12,
+    paddingVertical: 5,
+    backgroundColor: 'rgba(255,255,255,0.06)',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.08)',
+  },
   requiredText: { color: 'rgba(255,255,255,0.45)', fontSize: 10, fontWeight: '800', letterSpacing: 0.7 },
   scan: { marginTop: spacing.sm, textAlign: 'center', color: 'rgba(255,255,255,0.7)', fontSize: 13 },
   claim: { marginTop: 2, textAlign: 'center', color: '#B56FFF', fontSize: 33 / 2, fontWeight: '800' },

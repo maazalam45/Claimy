@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ClaimStackParamList } from '../../../navigation/types';
+import { BackIcon, CopyIcon, QrScanIcon, RefreshIcon, ShareIcon } from '../../../shared/components/AppIcons';
 import { GlassCard } from '../../../shared/components/GlassCard';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
@@ -20,14 +21,14 @@ export function ClaimQRCodeScreen({ navigation, route }: Props) {
       <View style={styles.root}>
         <View style={styles.header}>
           <Pressable accessibilityRole="button" onPress={() => navigation.goBack()} style={styles.circleBtn}>
-            <Text style={styles.circleText}>{'<'}</Text>
+            <BackIcon size={18} color={colors.white} />
           </Pressable>
           <View style={styles.headerCenter}>
             <Text style={styles.title}>{statusTitle}</Text>
             <Text style={styles.sub}>• SECURE LINK ACTIVE</Text>
           </View>
           <Pressable accessibilityRole="button" style={styles.circleBtn}>
-            <Text style={styles.circleText}>↻</Text>
+            <RefreshIcon size={18} color="#A3A1A5" />
           </Pressable>
         </View>
 
@@ -43,6 +44,7 @@ export function ClaimQRCodeScreen({ navigation, route }: Props) {
         </GlassCard>
 
         <View style={styles.required}>
+          <QrScanIcon size={12} color="#A3A1A5" />
           <Text style={styles.requiredText}>ACTION REQUIRED</Text>
         </View>
         <Text style={styles.scan}>Scan to confirm</Text>
@@ -54,14 +56,20 @@ export function ClaimQRCodeScreen({ navigation, route }: Props) {
             style={styles.actionBtn}
             onPress={() => navigation.replace('Claim2')}
           >
-            <Text style={styles.actionText}>↥  Share Code</Text>
+            <View style={styles.actionInner}>
+              <ShareIcon size={16} color="#FFFFFF" />
+              <Text style={styles.actionText}>Share Code</Text>
+            </View>
           </Pressable>
           <Pressable
             accessibilityRole="button"
             style={[styles.actionBtn, styles.actionBtnAlt]}
             onPress={() => navigation.replace('Claim2')}
           >
-            <Text style={styles.actionText}>▢  Copy Link</Text>
+            <View style={styles.actionInner}>
+              <CopyIcon size={16} color="#FC80FF" />
+              <Text style={[styles.actionText, styles.actionTextAlt]}>Copy Link</Text>
+            </View>
           </Pressable>
         </View>
       </View>
@@ -82,7 +90,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  circleText: { color: colors.white, fontSize: 18, fontWeight: '700' },
   headerCenter: { alignItems: 'center' },
   title: { color: colors.white, fontSize: 34 / 2, fontWeight: '900' },
   sub: { marginTop: 2, color: 'rgba(190,166,255,0.82)', fontSize: 10, fontWeight: '700', letterSpacing: 1 },
@@ -103,6 +110,9 @@ const styles = StyleSheet.create({
   required: {
     marginTop: spacing.lg,
     alignSelf: 'center',
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 6,
     borderRadius: 12,
     paddingHorizontal: 12,
     paddingVertical: 5,
@@ -125,5 +135,7 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.1)',
   },
   actionBtnAlt: { backgroundColor: 'rgba(111,62,255,0.22)', borderColor: 'rgba(111,62,255,0.35)' },
+  actionInner: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   actionText: { color: colors.white, fontSize: 16 / 1.2, fontWeight: '700' },
+  actionTextAlt: { color: '#FC80FF' },
 });

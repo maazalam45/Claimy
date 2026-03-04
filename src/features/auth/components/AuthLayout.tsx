@@ -1,6 +1,7 @@
 import { PropsWithChildren, ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
+import { BackIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -32,7 +33,7 @@ export function AuthLayout({
                 style={styles.iconCircle}
                 hitSlop={10}
               >
-                <Text style={styles.iconText}>{'<'}</Text>
+                <BackIcon size={18} color="rgba(255,255,255,0.85)" />
               </Pressable>
             ) : null}
           </View>
@@ -82,11 +83,6 @@ const styles = StyleSheet.create({
     borderColor: 'rgba(255,255,255,0.06)',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  iconText: {
-    color: 'rgba(255,255,255,0.85)',
-    fontSize: 16,
-    fontWeight: '700',
   },
   title: {
     marginTop: spacing.sm,

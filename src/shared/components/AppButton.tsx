@@ -1,4 +1,5 @@
-import { Pressable, StyleSheet, Text } from 'react-native';
+import { ReactNode } from 'react';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../theme/colors';
 import { spacing } from '../theme/spacing';
@@ -8,9 +9,10 @@ type AppButtonProps = {
   onPress: () => void;
   variant?: 'primary' | 'secondary' | 'light' | 'dark';
   fullWidth?: boolean;
+  rightIcon?: ReactNode;
 };
 
-export function AppButton({ label, onPress, variant = 'primary', fullWidth = false }: AppButtonProps) {
+export function AppButton({ label, onPress, variant = 'primary', fullWidth = false, rightIcon }: AppButtonProps) {
   const isSecondary = variant === 'secondary';
   const isLight = variant === 'light';
   const isDark = variant === 'dark';
@@ -27,16 +29,19 @@ export function AppButton({ label, onPress, variant = 'primary', fullWidth = fal
         isDark && styles.buttonDark,
       ]}
     >
-      <Text
-        style={[
-          styles.label,
-          isSecondary && styles.labelSecondary,
-          isLight && styles.labelLight,
-          isDark && styles.labelDark,
-        ]}
-      >
-        {label}
-      </Text>
+      <View style={styles.content}>
+        <Text
+          style={[
+            styles.label,
+            isSecondary && styles.labelSecondary,
+            isLight && styles.labelLight,
+            isDark && styles.labelDark,
+          ]}
+        >
+          {label}
+        </Text>
+        {rightIcon ? <View style={styles.rightIcon}>{rightIcon}</View> : null}
+      </View>
     </Pressable>
   );
 }
@@ -65,10 +70,17 @@ const styles = StyleSheet.create({
   buttonFullWidth: {
     width: '100%',
   },
+  content: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
   label: {
     color: colors.surface,
     fontSize: 16,
     fontWeight: '600',
+  },
+  rightIcon: {
+    marginLeft: 8,
   },
   labelSecondary: {
     color: colors.text,

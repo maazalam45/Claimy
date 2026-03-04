@@ -2,6 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ClaimStackParamList } from '../../../navigation/types';
+import { RefreshIcon } from '../../../shared/components/AppIcons';
 import { GlassCard } from '../../../shared/components/GlassCard';
 import { IconCircleButton } from '../../../shared/components/IconCircleButton';
 import { Screen } from '../../../shared/components/Screen';
@@ -52,7 +53,7 @@ export function ScanQRScreen({ navigation }: Props) {
             style={styles.smallBtn}
             onPress={() => navigation.navigate('FaceSearch')}
           >
-            <Text style={styles.smallBtnText}>↻</Text>
+            <RefreshIcon size={18} color="rgba(255,255,255,0.8)" />
           </Pressable>
         </View>
       </View>
@@ -124,5 +125,4 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  smallBtnText: { color: 'rgba(255,255,255,0.8)', fontSize: 20, fontWeight: '700' },
 });

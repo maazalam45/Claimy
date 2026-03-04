@@ -1,3 +1,4 @@
+import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { colors } from '../../../shared/theme/colors';
@@ -8,6 +9,7 @@ type SocialButtonProps = {
   onPress: () => void;
   onLongPress?: () => void;
   tone?: 'light' | 'dark';
+  icon?: ReactNode;
   iconText?: string;
 };
 
@@ -16,6 +18,7 @@ export function SocialButton({
   onPress,
   onLongPress,
   tone = 'dark',
+  icon,
   iconText,
 }: SocialButtonProps) {
   const isLight = tone === 'light';
@@ -28,6 +31,7 @@ export function SocialButton({
       style={[styles.base, isLight ? styles.light : styles.dark]}
     >
       <View style={styles.row}>
+        {icon ?? null}
         {iconText ? <Text style={[styles.icon, isLight ? styles.iconLight : styles.iconDark]}>{iconText}</Text> : null}
         <Text style={[styles.text, isLight ? styles.textLight : styles.textDark]}>{label}</Text>
       </View>
