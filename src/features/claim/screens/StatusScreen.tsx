@@ -13,6 +13,8 @@ import {
   StatusDiamondGoldIcon,
   StatusHeartIcon,
 } from '../../../shared/components/AppIcons';
+import { GlassCard } from '../../../shared/components/GlassCard';
+import { IconCircleButton } from '../../../shared/components/IconCircleButton';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -101,7 +103,7 @@ export function StatusScreen({ navigation }: Props) {
                     <Text style={styles.rowTitle}>{option.title}</Text>
                     <Text style={styles.rowSubtitle}>{option.subtitle}</Text>
                   </View>
-                  <ForwardIcon size={16} color="#A3A1A5" />
+                  <ForwardIcon size={14} color="rgba(255,255,255,0.42)" />
                 </View>
               </View>
             </Pressable>
