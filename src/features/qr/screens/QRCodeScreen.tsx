@@ -2,7 +2,7 @@ import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { ShareStackParamList } from '../../../navigation/types';
-import { BackIcon, QrScanIcon, RefreshIcon } from '../../../shared/components/AppIcons';
+import { BackIcon, CopyIcon, QrScanIcon, RefreshIcon, ShareIcon } from '../../../shared/components/AppIcons';
 import { GlassCard } from '../../../shared/components/GlassCard';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
@@ -49,9 +49,17 @@ export function QRCodeScreen({ navigation }: Props) {
         <Text style={styles.claim}>Talking Stage claim</Text>
 
         <View style={styles.actions}>
-          <Pressable style={styles.actionBtn}><Text style={styles.actionText}>↥  Share Code</Text></Pressable>
+          <Pressable style={styles.actionBtn}>
+            <View style={styles.actionInner}>
+              <ShareIcon size={16} color="#FFFFFF" />
+              <Text style={styles.actionText}>Share Code</Text>
+            </View>
+          </Pressable>
           <Pressable style={[styles.actionBtn, styles.actionBtnAlt]} onPress={() => navigation.popToTop()}>
-            <Text style={styles.actionText}>▢  Copy Link</Text>
+            <View style={styles.actionInner}>
+              <CopyIcon size={16} color="#FC80FF" />
+              <Text style={[styles.actionText, styles.actionTextAlt]}>Copy Link</Text>
+            </View>
           </Pressable>
         </View>
       </View>
@@ -91,5 +99,7 @@ const styles = StyleSheet.create({
   actions: { marginTop: 'auto', marginBottom: 20, flexDirection: 'row', gap: spacing.sm },
   actionBtn: { flex: 1, height: 52, borderRadius: 14, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(255,255,255,0.08)', borderWidth: 1, borderColor: 'rgba(255,255,255,0.1)' },
   actionBtnAlt: { backgroundColor: 'rgba(111,62,255,0.22)', borderColor: 'rgba(111,62,255,0.35)' },
+  actionInner: { flexDirection: 'row', alignItems: 'center', gap: 8 },
   actionText: { color: colors.white, fontSize: 16 / 1.2, fontWeight: '700' },
+  actionTextAlt: { color: '#FC80FF' },
 });

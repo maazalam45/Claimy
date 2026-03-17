@@ -1,9 +1,11 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { ReactNode } from 'react';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
+import Svg, { Defs, LinearGradient, RadialGradient, Rect, Stop } from 'react-native-svg';
 
 import { ClaimStackParamList } from '../../../navigation/types';
 import {
+  BackIcon,
   ForwardIcon,
   StatusChatPurpleIcon,
   StatusDaisyIcon,
@@ -11,8 +13,6 @@ import {
   StatusDiamondGoldIcon,
   StatusHeartIcon,
 } from '../../../shared/components/AppIcons';
-import { GlassCard } from '../../../shared/components/GlassCard';
-import { IconCircleButton } from '../../../shared/components/IconCircleButton';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -73,7 +73,9 @@ export function StatusScreen({ navigation }: Props) {
     <Screen padded={false} backgroundColor={colors.black}>
       <View style={styles.root}>
         <View style={styles.header}>
-          <IconCircleButton icon="<" accessibilityLabel="Back" onPress={() => navigation.goBack()} />
+          <Pressable accessibilityRole="button" accessibilityLabel="Back" onPress={() => navigation.goBack()} style={styles.iconCircle}>
+            <BackIcon size={20} color="#A3A1A5" />
+          </Pressable>
         </View>
 
         <Text style={styles.title}>Select Status</Text>
@@ -89,7 +91,8 @@ export function StatusScreen({ navigation }: Props) {
                 navigation.navigate('ClaimQRCode', { statusTitle: option.title });
               }}
             >
-              <GlassCard style={styles.rowCard}>
+              <View style={styles.rowCard}>
+                <StatusRowBackground id={option.key} />
                 <View style={styles.row}>
                   <View style={[styles.rowIcon, { borderColor: option.color }]}>
                     {option.icon}
@@ -98,14 +101,50 @@ export function StatusScreen({ navigation }: Props) {
                     <Text style={styles.rowTitle}>{option.title}</Text>
                     <Text style={styles.rowSubtitle}>{option.subtitle}</Text>
                   </View>
-                  <ForwardIcon size={14} color="rgba(255,255,255,0.42)" />
+                  <ForwardIcon size={16} color="#A3A1A5" />
                 </View>
-              </GlassCard>
+              </View>
             </Pressable>
           ))}
         </View>
       </View>
     </Screen>
+  );
+}
+
+function StatusRowBackground({ id }: { id: string }) {
+  const fillId = `statusFill${id}`;
+  const borderId = `statusBorder${id}`;
+
+  return (
+    <Svg
+      pointerEvents="none"
+      style={StyleSheet.absoluteFillObject}
+      viewBox="0 0 345 72"
+      preserveAspectRatio="none"
+    >
+      <Defs>
+        <LinearGradient id={fillId} x1="0%" y1="50%" x2="100%" y2="50%">
+          <Stop offset="0%" stopColor="#1B1B1D" />
+          <Stop offset="100%" stopColor="#000000" />
+        </LinearGradient>
+        <RadialGradient id={borderId} cx="50%" cy="50%" rx="50%" ry="50%">
+          <Stop offset="0%" stopColor="#272729" />
+          <Stop offset="100%" stopColor="#0D0D0D" />
+        </RadialGradient>
+      </Defs>
+      <Rect
+        x="0.5"
+        y="0.5"
+        width="344"
+        height="71"
+        rx="16"
+        ry="16"
+        fill={`url(#${fillId})`}
+        stroke={`url(#${borderId})`}
+        strokeWidth="1"
+      />
+    </Svg>
   );
 }
 
@@ -118,6 +157,21 @@ const styles = StyleSheet.create({
   header: {
     height: 44,
     justifyContent: 'center',
+  },
+  iconCircle: {
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: '#353436',
+    backgroundColor: '#262628',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
   },
   title: {
     marginTop: spacing.md,
@@ -137,22 +191,31 @@ const styles = StyleSheet.create({
     gap: spacing.sm,
   },
   rowCard: {
-    paddingVertical: spacing.md,
-    paddingHorizontal: spacing.lg,
+    position: 'relative',
+    minHeight: 72,
+    borderRadius: 16,
+    padding: 16,
+    overflow: 'hidden',
   },
   row: {
     flexDirection: 'row',
     alignItems: 'center',
-    gap: spacing.md,
+    gap: 20,
   },
   rowIcon: {
-    width: 34,
-    height: 34,
-    borderRadius: 17,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
     borderWidth: 1,
-    backgroundColor: '#1D1D22',
+    borderColor: '#353436',
+    backgroundColor: '#262628',
     alignItems: 'center',
     justifyContent: 'center',
+    shadowColor: '#000000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.1,
+    shadowRadius: 8,
+    elevation: 3,
   },
   rowText: {
     flex: 1,

@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 
 import { ProfileSetupStackParamList } from '../../../navigation/types';
 import { AppButton } from '../../../shared/components/AppButton';
+import { CheckSuccessIcon } from '../../../shared/components/AppIcons';
 import { Screen } from '../../../shared/components/Screen';
 import { colors } from '../../../shared/theme/colors';
 import { spacing } from '../../../shared/theme/spacing';
@@ -18,7 +19,7 @@ export function ProfileSetupSuccessScreen(_props: Props) {
       <View style={styles.root}>
         <View style={styles.center}>
           <View style={styles.checkOuter}>
-            <Text style={styles.check}>OK</Text>
+            <CheckSuccessIcon width={34} height={24} color="#34C759" />
           </View>
           <Text style={styles.title}>You're All Set!</Text>
           <Text style={styles.copy}>
@@ -60,12 +61,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: spacing.md,
-  },
-  check: {
-    color: '#34C759',
-    fontSize: 22,
-    fontWeight: '900',
-    letterSpacing: 1,
   },
   title: {
     color: colors.white,
